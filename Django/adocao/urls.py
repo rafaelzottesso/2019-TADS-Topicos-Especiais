@@ -8,4 +8,5 @@ urlpatterns = [
     # path('caminho/da/url', ClasseLáDoView.as_view(), name="nomeDessaURL" )
     path('', PaginaInicialView.as_view(), name="index"),
     path('sobre/', SobreView.as_view(), name="sobre"),
+    path('contato/', ContatoView.as_view(), name="contato"),
 ]
