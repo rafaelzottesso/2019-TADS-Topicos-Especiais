@@ -1,6 +1,9 @@
 <!-- Vamos extender o template base -->
 {% extends 'base.html' %}
 
+<!-- Carrega o static para usar aqui também -->
+{% load static %}
+
 {% block header %}
 <!-- repete o código do bloco pai -->
 {{ block.super }}
@@ -17,6 +20,8 @@
     <div class="col-lg-12 text-center my-5 p-5 border border-primary">
 
       <h3>Oi :D</h3>
+      <hr>
+      <img src="{% static 'img/django.jpeg' %}" alt="">
 
     </div>
 
