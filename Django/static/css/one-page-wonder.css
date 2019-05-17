@@ -8,12 +8,7 @@ body {
   font-family: 'Lato';
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Catamaran';
   font-weight: 800 !important;
 }
@@ -57,10 +52,10 @@ h6 {
 header.masthead {
   position: relative;
   overflow: hidden;
-  padding-top: calc(7rem + 72px);
-  padding-bottom: 7rem;
-  background: -webkit-gradient(linear, left bottom, left top, from(#E0FFFF), to(#00008B));
-  background: linear-gradient(0deg, #E0FFFF 0%, #00008B 100%);
+  padding-top: calc(4rem + 32px);
+  padding-bottom: 4rem;
+  background: -webkit-gradient(linear, left bottom, left top, from(#FFFFFF), to(#333333));
+  background: linear-gradient(0deg, #FFFFFF 0%, #333333 100%);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
@@ -80,46 +75,10 @@ header.masthead .masthead-content .masthead-subheading {
   font-size: 2rem;
 }
 
-header.masthead .bg-circle {
-  z-index: 0;
-  position: absolute;
-  border-radius: 100%;
-  background: -webkit-gradient(linear, left bottom, left top, from(#00008B), to(#0000FB));
-  background: linear-gradient(0deg, #00008B 0%, #0000FB 100%);
-}
-
-header.masthead .bg-circle-1 {
-  height: 90rem;
-  width: 90rem;
-  bottom: -55rem;
-  left: -55rem;
-}
-
-header.masthead .bg-circle-2 {
-  height: 50rem;
-  width: 50rem;
-  top: -25rem;
-  right: -25rem;
-}
-
-header.masthead .bg-circle-3 {
-  height: 20rem;
-  width: 20rem;
-  bottom: -10rem;
-  right: 5%;
-}
-
-header.masthead .bg-circle-4 {
-  height: 30rem;
-  width: 30rem;
-  top: -5rem;
-  right: 35%;
-}
-
 @media (min-width: 992px) {
   header.masthead {
-    padding-top: calc(10rem + 55px);
-    padding-bottom: 10rem;
+    padding-top: calc(4rem + 55px);
+    padding-bottom: 4rem;
   }
   header.masthead .masthead-content .masthead-heading {
     font-size: 6rem;
@@ -129,36 +88,36 @@ header.masthead .bg-circle-4 {
   }
 }
 
-.bg-primary {
+.bg-primary-2 {
   background-color: #00008B !important;
 }
 
-.btn-primary {
+.btn-primary-2 {
   background-color: #00008B;
   border-color: #00008B;
 }
 
-.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+.btn-primary-2:active, .btn-primary-2:focus, .btn-primary-2:hover {
   background-color: #00008B !important;
   border-color: #00008B !important;
 }
 
-.btn-primary:focus {
+.btn-primary-2:focus {
   -webkit-box-shadow: 0 0 0 0.2rem #00008B;
   box-shadow: 0 0 0 0.2rem #00008B;
 }
 
-.btn-secondary {
+.btn-secondary-2 {
   background-color: #E0FFFF;
   border-color: #E0FFFF;
 }
 
-.btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
+.btn-secondary-2:active, .btn-secondary-2:focus, .btn-secondary-2:hover {
   background-color: #E0FFFF !important;
   border-color: #E0FFFF !important;
 }
 
-.btn-secondary:focus {
+.btn-secondary-2:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
 }
