@@ -13,5 +13,7 @@ urlpatterns = [
 
     # URLS de cadastros
     path('cadastrar/estado/', EstadoCreate.as_view(), name="cadastrar-estado"),
-
+    
+    path('editar/estado/<int:pk>/', EstadoUpdate.as_view(), name="editar-estado"),
+    
 ]
