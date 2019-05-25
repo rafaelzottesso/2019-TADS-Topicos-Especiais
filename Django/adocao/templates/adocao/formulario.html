@@ -2,6 +2,10 @@
 
 {% load static %}
 
+<!-- Carrega o plugin do form com bs4 -->
+{% load crispy_forms_tags %}
+
+
 {% block header %}
 
 {% endblock %}
@@ -11,10 +15,13 @@
 <div class="container py-5">
 
     <div class="row mt-5">
-
         <div class="col-lg">
-
             <h3>Cadastro de XXXX</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
 
             <form method="post">
 
@@ -22,7 +29,7 @@
                 {% csrf_token %}
 
                 <!-- Gera o formulário -->
-                {{ form.as_p }}
+                {{ form|crispy }}
 
                 <!-- Cria um botão para submeter o form e outro para voltar -->
                 <button type="submit" class="btn btn-primary">

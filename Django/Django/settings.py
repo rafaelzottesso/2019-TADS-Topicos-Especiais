@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'adocao.apps.AdocaoConfig', # ativa este módulo
+    'crispy_forms', # usar o bs4 nos formulários
 ]
+
+# Define o template do Crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
