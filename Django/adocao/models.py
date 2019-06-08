@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Estado(models.Model):
     # nome_do_atributo = models.Tipo(configuração)
-    sigla   = models.CharField(max_length=2)
+    sigla   = models.CharField(max_length=2, unique=True)
     nome    = models.CharField(max_length=50)
 
     # Como se fosse toString e self = this
