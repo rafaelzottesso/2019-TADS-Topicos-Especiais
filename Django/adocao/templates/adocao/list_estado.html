@@ -19,6 +19,7 @@
                 Lista de Estados cadastrados
 
                 <a href="{% url 'cadastrar-estado' %}" class="float-right btn btn-primary btn-sm">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     Novo estado
                 </a>
             </h3>
@@ -46,12 +47,12 @@
                         <td>{{ estado.sigla }}</td>
                         <td>{{ estado.nome }}</td>
                         <td>
-                            <a href="{% url 'editar-estado' estado.pk %}" class="btn btn-warning btn-sm">
-                                Editar
+                            <a href="{% url 'editar-estado' estado.pk %}" class="btn btn-outline-warning btn-sm">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
 
-                            <a href="{% url 'excluir-estado' estado.pk %}" class="btn btn-danger btn-sm">
-                                Excluir
+                            <a href="{% url 'excluir-estado' estado.pk %}" class="btn btn-outline-danger btn-sm">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
                     </tr>
