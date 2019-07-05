@@ -16,11 +16,11 @@
         <div class="col-lg">
 
             <h3 class="border-bottom">
-                Lista de Estados cadastrados
+                Lista de Animais cadastrados
 
-                <a href="{% url 'cadastrar-estado' %}" class="float-right btn btn-primary btn-sm">
+                <a href="{% url 'cadastrar-animal' %}" class="float-right btn btn-primary btn-sm">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                    Novo estado
+                    Novo animal
                 </a>
             </h3>
 
@@ -34,31 +34,35 @@
 
                 <thead>
                     <tr>
-                        <th>Sigla</th>
-                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Raça</th>
+                        <th>Descrição</th>
+                        <th>Idade</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
-                    {% for estado in object_list %}
+                    {% for obj in object_list %}
                     <tr>
-                        <td>{{ estado.sigla }}</td>
-                        <td>{{ estado.nome }}</td>
+                        <td>{{ obj.tipo }}</td>
+                        <td>{{ obj.raca }}</td>
+                        <td>{{ obj.descricao }}</td>
+                        <td>{{ obj.idade }}</td>
                         <td>
-                            <a href="{% url 'editar-estado' estado.pk %}" class="btn btn-outline-warning btn-sm">
+                            <a href="{% url 'editar-animal' obj.pk %}" class="btn btn-outline-warning btn-sm">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
 
-                            <a href="{% url 'excluir-estado' estado.pk %}" class="btn btn-outline-danger btn-sm">
+                            <a href="{% url 'excluir-animal' obj.pk %}" class="btn btn-outline-danger btn-sm">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="3">Nenhum estado cadastrado</td>
+                        <td colspan="100%">Nenhum animal cadastrado</td>
                     </tr>
                     {% endfor %}
 

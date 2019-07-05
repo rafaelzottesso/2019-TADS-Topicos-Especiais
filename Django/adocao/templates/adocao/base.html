@@ -45,6 +45,37 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'index' %}">Início</a>
           </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Cadastros
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'cadastrar-estado' %}">Estado</a>
+              <a class="dropdown-item" href="{% url 'cadastrar-cidade' %}">Cidade</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'cadastrar-tipo' %}">Tipo</a>
+              <a class="dropdown-item" href="{% url 'cadastrar-raca' %}">Raça</a>
+              <a class="dropdown-item" href="{% url 'cadastrar-animal' %}">Animal</a>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Consulta
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'listar-estados' %}">Estado</a>
+              <a class="dropdown-item" href="{% url 'listar-cidades' %}">Cidade</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'listar-tipos' %}">Tipo</a>
+              <a class="dropdown-item" href="{% url 'listar-racas' %}">Raça</a>
+              <a class="dropdown-item" href="{% url 'listar-animais' %}">Animal</a>
+            </div>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
           </li>

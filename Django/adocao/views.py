@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Importa todas as classes do models.py
-from .models import *
+from .models import Animal, Cidade, Estado, Raca, Tipo
 
 # Importa função que vai chamar as urls pelo "name" delas
 from django.urls import reverse_lazy
@@ -19,6 +19,8 @@ from django.views.generic.list import ListView
 
 # Cria uma classe com herança de TemplateView para exibir
 # um arquivo HTML normal (com o conteúdo dele)
+
+
 class PaginaInicialView(TemplateView):
     # Nome do arquivo que vai ser utilizado para renderizar
     # esta página/método/classe
@@ -68,7 +70,69 @@ class EstadoCreate(CreateView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
+
+class CidadeCreate(CreateView):
+    model = Cidade
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-cidades")
+    fields = ['nome', 'estado', 'descricao']
+
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        context = super(CidadeCreate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastro de novas Cidades"
+        context['botao'] = "Cadastrar"
+        context['classeBotao'] = "btn-primary"
+        return context
+
+
+class TipoCreate(CreateView):
+    model = Tipo
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-tipos")
+    fields = ['descricao']
+
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        context = super(TipoCreate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastro de novos Tipos"
+        context['botao'] = "Cadastrar"
+        context['classeBotao'] = "btn-primary"
+        return context
+
+
+class RacaCreate(CreateView):
+    model = Raca
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-racas")
+    fields = ['descricao']
+
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        context = super(RacaCreate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastro de novas Raças"
+        context['botao'] = "Cadastrar"
+        context['classeBotao'] = "btn-primary"
+        return context
+
+
+class AnimalCreate(CreateView):
+    model = Animal
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-animais")
+    fields = ['tipo', 'raca', 'descricao',
+              'nome', 'idade', 'cidade', 'telefone']
+
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        context = super(AnimalCreate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastro de novos Animais"
+        context['botao'] = "Cadastrar"
+        context['classeBotao'] = "btn-primary"
+        return context
+
 ##################### EDITAR ######################
+
 
 class EstadoUpdate(UpdateView):
     # Define qual o modelo pra essa classe vai criar o form
@@ -86,7 +150,7 @@ class EstadoUpdate(UpdateView):
         context = super(EstadoUpdate, self).get_context_data(*args, **kwargs)
 
         # Adicionar coisas ao contexto que serão enviadas para o html
-        context['titulo'] = "Alterar cadastro de Estado"
+        context['titulo'] = "Editar cadastro de Estado"
         context['botao'] = "Salvar"
         context['classeBotao'] = "btn-success"
 
@@ -94,7 +158,68 @@ class EstadoUpdate(UpdateView):
         return context
 
 
+class CidadeUpdate(UpdateView):
+    model = Cidade
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-cidades")
+    fields = ['nome', 'estado', 'descricao']
+
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        context = super(CidadeUpdate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Editar cadastro de Cidade"
+        context['botao'] = "Salvar"
+        context['classeBotao'] = "btn-success"
+        return context
+
+
+class TipoUpdate(UpdateView):
+    model = Tipo
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-tipos")
+    fields = ['descricao']
+
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        context = super(TipoUpdate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Editar cadastro de Tipo"
+        context['botao'] = "Salvar"
+        context['classeBotao'] = "btn-success"
+        return context
+
+
+class RacaUpdate(UpdateView):
+    model = Raca
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-racas")
+    fields = ['descricao']
+
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        context = super(RacaUpdate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Editar cadastro de Raça"
+        context['botao'] = "Salvar"
+        context['classeBotao'] = "btn-success"
+        return context
+
+
+class AnimalUpdate(UpdateView):
+    model = Animal
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-animais")
+    fields = ['tipo', 'raca', 'descricao',
+              'nome', 'idade', 'cidade', 'telefone']
+
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        context = super(AnimalUpdate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Editar cadastro de Animal"
+        context['botao'] = "Salvar"
+        context['classeBotao'] = "btn-primary"
+        return context
+
 ##################### Excluir ######################
+
 
 class EstadoDelete(DeleteView):
     # Define qual o modelo pra essa classe vai criar o form
@@ -117,11 +242,77 @@ class EstadoDelete(DeleteView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
+class CidadeDelete(DeleteView):
+    model = Cidade
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-cidades")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CidadeDelete, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Deseja excluir esse registro?"
+        context['botao'] = "Excluir"
+        context['classeBotao'] = "btn-danger"
+        return context
+
+class TipoDelete(DeleteView):
+    model = Tipo
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-tipos")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(TipoDelete, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Deseja excluir esse registro?"
+        context['botao'] = "Excluir"
+        context['classeBotao'] = "btn-danger"
+        return context
+
+class RacaDelete(DeleteView):
+    model = Raca
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-racas")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(RacaDelete, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Deseja excluir esse registro?"
+        context['botao'] = "Excluir"
+        context['classeBotao'] = "btn-danger"
+        return context
+
+class AnimalDelete(DeleteView):
+    model = Animal
+    template_name = "adocao/formulario.html"
+    success_url = reverse_lazy("listar-animais")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(AnimalDelete, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Deseja excluir esse registro?"
+        context['botao'] = "Excluir"
+        context['classeBotao'] = "btn-danger"
+        return context
+
 ##################### Listar ######################
 
 # Vai gerar uma tela com uma lista de estados
+
+
 class EstadoList(ListView):
     # Inform qual o modelo
     model = Estado
-    # E o template 
-    template_name = "adocao/list_estado.html"
+    # E o template
+    template_name = "adocao/listas/list_estado.html"
+
+class CidadeList(ListView):
+    model = Cidade
+    template_name = "adocao/listas/list_cidade.html"
+
+class TipoList(ListView):
+    model = Tipo
+    template_name = "adocao/listas/list_tipo.html"
+
+class RacaList(ListView):
+    model = Raca
+    template_name = "adocao/listas/list_raca.html"
+
+class AnimalList(ListView):
+    model = Animal
+    template_name = "adocao/listas/list_animal.html"
