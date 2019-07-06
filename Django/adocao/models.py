@@ -30,7 +30,7 @@ class Tipo(models.Model):
         max_length=50, verbose_name="Descrição", help_text="Ex: gato, cachorro, pássarinho")
 
     def __str__(self):
-        return "{}".format(self.nome)
+        return "{}".format(self.descricao)
 
 
 class Raca(models.Model):
@@ -38,7 +38,7 @@ class Raca(models.Model):
         max_length=50, verbose_name="Descrição", help_text="Ex: vira-lata, beagle, pardal, persa")
 
     def __str__(self):
-        return "{}".format(self.nome)
+        return "{}".format(self.descricao)
 
     # Configurar algumas coisas dessa classe, como nome, plural, ordenação, etc
     # https://docs.djangoproject.com/en/2.2/ref/models/options/
