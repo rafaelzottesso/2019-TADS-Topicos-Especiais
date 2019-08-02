@@ -52,40 +52,26 @@ h1, h2, h3, h4, h5, h6 {
 header.masthead {
   position: relative;
   overflow: hidden;
-  padding-top: calc(4rem + 32px);
+  padding-top: calc(4rem + 3px);
   padding-bottom: 4rem;
-  background: -webkit-gradient(linear, left bottom, left top, from(#FFFFFF), to(#333333));
-  background: linear-gradient(0deg, #FFFFFF 0%, #333333 100%);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: scroll;
-  background-size: cover;
 }
 
 header.masthead .masthead-content {
   z-index: 1;
   position: relative;
+  padding-top: 20px;
 }
 
 header.masthead .masthead-content .masthead-heading {
   font-size: 4rem;
+  text-shadow: #ACACAC 2px 2px 2px;
 }
 
 header.masthead .masthead-content .masthead-subheading {
   font-size: 2rem;
 }
-
-@media (min-width: 992px) {
-  header.masthead {
-    padding-top: calc(4rem + 55px);
-    padding-bottom: 4rem;
-  }
-  header.masthead .masthead-content .masthead-heading {
-    font-size: 6rem;
-  }
-  header.masthead .masthead-content .masthead-subheading {
-    font-size: 4rem;
-  }
+header.masthead .masthead-content a {
+  font-size: 1.1rem;
 }
 
 .bg-primary-2 {

@@ -1,0 +1,7 @@
+.bg-animais {
+    background-image: url('../img/animais.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: auto 100%;
+}
