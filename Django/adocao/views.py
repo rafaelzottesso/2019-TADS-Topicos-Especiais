@@ -15,6 +15,10 @@ from django.views.generic import TemplateView
 # Importa ListView para gerar as telas com tabelas
 from django.views.generic.list import ListView
 
+# Importa o Mixin para obrigar login
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 # Create your views here.
 
 # Cria uma classe com herança de TemplateView para exibir
@@ -47,7 +51,7 @@ class CurriculoView(TemplateView):
 
 ##################### INSERIR ######################
 
-class EstadoCreate(CreateView):
+class EstadoCreate(LoginRequiredMixin, CreateView):
     # Define qual o modelo pra essa classe vai criar o form
     model = Estado
     # Qual o html que será utilizado?
@@ -71,7 +75,7 @@ class EstadoCreate(CreateView):
         return context
 
 
-class CidadeCreate(CreateView):
+class CidadeCreate(LoginRequiredMixin, CreateView):
     model = Cidade
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-cidades")
@@ -86,7 +90,7 @@ class CidadeCreate(CreateView):
         return context
 
 
-class TipoCreate(CreateView):
+class TipoCreate(LoginRequiredMixin, CreateView):
     model = Tipo
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-tipos")
@@ -101,7 +105,7 @@ class TipoCreate(CreateView):
         return context
 
 
-class RacaCreate(CreateView):
+class RacaCreate(LoginRequiredMixin, CreateView):
     model = Raca
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-racas")
@@ -116,7 +120,7 @@ class RacaCreate(CreateView):
         return context
 
 
-class AnimalCreate(CreateView):
+class AnimalCreate(LoginRequiredMixin, CreateView):
     model = Animal
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-animais")
@@ -134,7 +138,7 @@ class AnimalCreate(CreateView):
 ##################### EDITAR ######################
 
 
-class EstadoUpdate(UpdateView):
+class EstadoUpdate(LoginRequiredMixin, UpdateView):
     # Define qual o modelo pra essa classe vai criar o form
     model = Estado
     # Qual o html que será utilizado?
@@ -158,7 +162,7 @@ class EstadoUpdate(UpdateView):
         return context
 
 
-class CidadeUpdate(UpdateView):
+class CidadeUpdate(LoginRequiredMixin, UpdateView):
     model = Cidade
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-cidades")
@@ -173,7 +177,7 @@ class CidadeUpdate(UpdateView):
         return context
 
 
-class TipoUpdate(UpdateView):
+class TipoUpdate(LoginRequiredMixin, UpdateView):
     model = Tipo
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-tipos")
@@ -188,7 +192,7 @@ class TipoUpdate(UpdateView):
         return context
 
 
-class RacaUpdate(UpdateView):
+class RacaUpdate(LoginRequiredMixin, UpdateView):
     model = Raca
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-racas")
@@ -203,7 +207,7 @@ class RacaUpdate(UpdateView):
         return context
 
 
-class AnimalUpdate(UpdateView):
+class AnimalUpdate(LoginRequiredMixin, UpdateView):
     model = Animal
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-animais")
@@ -221,7 +225,7 @@ class AnimalUpdate(UpdateView):
 ##################### Excluir ######################
 
 
-class EstadoDelete(DeleteView):
+class EstadoDelete(LoginRequiredMixin, DeleteView):
     # Define qual o modelo pra essa classe vai criar o form
     model = Estado
     # Qual o html que será utilizado?
@@ -242,7 +246,7 @@ class EstadoDelete(DeleteView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class CidadeDelete(DeleteView):
+class CidadeDelete(LoginRequiredMixin, DeleteView):
     model = Cidade
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-cidades")
@@ -254,7 +258,7 @@ class CidadeDelete(DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class TipoDelete(DeleteView):
+class TipoDelete(LoginRequiredMixin, DeleteView):
     model = Tipo
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-tipos")
@@ -266,7 +270,7 @@ class TipoDelete(DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class RacaDelete(DeleteView):
+class RacaDelete(LoginRequiredMixin, DeleteView):
     model = Raca
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-racas")
@@ -278,7 +282,7 @@ class RacaDelete(DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class AnimalDelete(DeleteView):
+class AnimalDelete(LoginRequiredMixin, DeleteView):
     model = Animal
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-animais")
@@ -295,24 +299,24 @@ class AnimalDelete(DeleteView):
 # Vai gerar uma tela com uma lista de estados
 
 
-class EstadoList(ListView):
+class EstadoList(LoginRequiredMixin, ListView):
     # Inform qual o modelo
     model = Estado
     # E o template
     template_name = "adocao/listas/list_estado.html"
 
-class CidadeList(ListView):
+class CidadeList(LoginRequiredMixin, ListView):
     model = Cidade
     template_name = "adocao/listas/list_cidade.html"
 
-class TipoList(ListView):
+class TipoList(LoginRequiredMixin, ListView):
     model = Tipo
     template_name = "adocao/listas/list_tipo.html"
 
-class RacaList(ListView):
+class RacaList(LoginRequiredMixin, ListView):
     model = Raca
     template_name = "adocao/listas/list_raca.html"
 
-class AnimalList(ListView):
+class AnimalList(LoginRequiredMixin, ListView):
     model = Animal
     template_name = "adocao/listas/list_animal.html"

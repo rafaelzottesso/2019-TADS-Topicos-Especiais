@@ -19,9 +19,18 @@
 
     <div class="col-lg-12 text-center my-5 p-5 border border-primary">
 
-      <h3>Oi :D</h3>
-      <hr>
-      <img src="{% static 'img/django.jpeg' %}" alt="">
+      {% if request.user.is_authenticated %}
+
+      <h3>Olá {{ request.user.username }}, bem vindo ao sistema!</h3>
+
+      <h5>Seu último login foi em: {{ request.user.last_login }}</h5>
+
+      {% else %}
+
+      <h3>Olá visitante, faça login para poder acessar todas as funcionalidades.</h3>
+
+      {% endif %}
+      
 
     </div>
 
