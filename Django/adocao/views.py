@@ -30,6 +30,15 @@ class PaginaInicialView(TemplateView):
     # esta página/método/classe
     template_name = "adocao/index.html"
 
+    # Método utilizado para enviar dados ao template
+    def get_context_data(self, *args, **kwargs):
+        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
+        context = super(PaginaInicialView, self).get_context_data(*args, **kwargs)
+
+        context['ultimos_animais'] = "Aqui vai a lista de animais"
+
+        return context
+
 # Página "Sobre"
 
 

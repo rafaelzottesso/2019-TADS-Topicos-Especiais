@@ -17,6 +17,16 @@
 
     <div class="row">
         <div class="col-lg-5">
+
+            {% if request.user.is_authenticated %}
+
+            <h4 class="mt-4 text-danger">Você já está autenticado!</h4>
+
+            Redirecionando para a página inicial em 5 segundos...
+            <meta http-equiv="Refresh" content="5; url={% url 'index' %}" />
+
+            {% else %}
+
             <form method="post">
                 <!-- Todo formulário tem que ter essa validação -->
                 {% csrf_token %}
@@ -26,6 +36,9 @@
                     {{ botao }}
                 </button>
             </form>
+
+            {% endif %}
+
         </div>
     </div>
     
