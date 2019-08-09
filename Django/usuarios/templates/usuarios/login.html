@@ -22,8 +22,8 @@
                 {% csrf_token %}
                 <!-- Gera o formulário -->
                 {{ form|crispy }}
-                <button type="submit" class="btn btn-primary">
-                    Entrar
+                <button type="submit" class="btn {{ classe }}">
+                    {{ botao }}
                 </button>
             </form>
         </div>
