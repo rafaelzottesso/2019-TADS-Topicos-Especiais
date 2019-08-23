@@ -134,7 +134,7 @@ class AnimalCreate(LoginRequiredMixin, CreateView):
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-animais")
     fields = ['tipo', 'raca', 'descricao',
-              'nome', 'idade', 'cidade', 'telefone']
+              'nome', 'idade', 'foto', 'cidade', 'telefone']
 
     # Método utilizado para enviar dados ao template
     def get_context_data(self, *args, **kwargs):
@@ -221,7 +221,7 @@ class AnimalUpdate(LoginRequiredMixin, UpdateView):
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-animais")
     fields = ['tipo', 'raca', 'descricao',
-              'nome', 'idade', 'cidade', 'telefone']
+              'nome', 'idade', 'foto', 'cidade', 'telefone']
 
     # Método utilizado para enviar dados ao template
     def get_context_data(self, *args, **kwargs):

@@ -55,6 +55,7 @@ class Animal(models.Model):
     nome = models.CharField(max_length=50, null=True, blank=True, help_text="O animal tem nome?")
     idade = models.DecimalField(max_digits=3, decimal_places=1, null=True,
                                 help_text="Quantos anos, aproximadamente, o animal tem? Ex: 2,5")
+    foto = models.URLField(help_text="Informe a URL de uma imagem para este animal. Ex: http://...")
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, help_text="Onde o animal está?")
     telefone = models.CharField(max_length=17)
 

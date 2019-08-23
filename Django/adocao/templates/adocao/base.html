@@ -3,7 +3,7 @@
 <!-- Carregar todas as URLS do projeto pelo nome -->
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="h-100">
 
 <head>
 
@@ -31,7 +31,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
 
   <!-- Navigation -->
   {% block menu %}
@@ -126,17 +126,27 @@
   {% endblock %}
 
 
+  <div class="flex-shrink-0">
+
   <!-- Cabeçalho do site -->
   {% block header %}
-  <header class="masthead text-center text-white bg-animais">
+  <header class="masthead text-center text-white bg-animais mt-2">
     <div class="masthead-content ">
       <div class="container">
         <h1 class="masthead-heading mb-0 text-dark">Adote um animal!</h1>
         <h2 class="masthead-subheading mb-5">&nbsp;</h2>
+        
         <a href="#" class="btn btn-warning btn-lg rounded-pill mt-5 px-4 py-3">
           <i class="fa fa-search" aria-hidden="true"></i>
           Procure um já
         </a>
+
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'cadastrar-animal' %}" class="btn btn-primary btn-lg rounded-pill mt-5 px-4 py-3">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Cadastrar um animal
+        </a>
+        {% endif %}
 
       </div>
     </div>
@@ -209,10 +219,13 @@
   </section>
   {% endblock %}
 
+  
+  </div>
+
 
   <!-- Footer -->
   {% block footer %}
-  <footer class="py-5 bg-black">
+  <footer class="mt-auto py-5 bg-black">
     <div class="container">
       <p class="m-0 text-center text-white small">
         Copyright &copy; Your Website 2019
