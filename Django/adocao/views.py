@@ -330,6 +330,12 @@ class AnimalDelete(LoginRequiredMixin, DeleteView):
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-animais")
 
+    # Altera a query para buscar o objeto do usuário logado
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(
+            Animal, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
+
     def get_context_data(self, *args, **kwargs):
         context = super(AnimalDelete, self).get_context_data(*args, **kwargs)
         context['titulo'] = "Deseja excluir esse registro?"
