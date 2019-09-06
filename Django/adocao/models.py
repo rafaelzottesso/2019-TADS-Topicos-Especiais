@@ -1,5 +1,8 @@
 from django.db import models
 
+# Importar o modelo User
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 
@@ -58,6 +61,8 @@ class Animal(models.Model):
     foto = models.URLField(help_text="Informe a URL de uma imagem para este animal. Ex: http://...")
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, help_text="Onde o animal está?")
     telefone = models.CharField(max_length=17)
+
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def __str__(self):
         return "{} - {}/{}".format(self.nome, self.raca, self.tipo)

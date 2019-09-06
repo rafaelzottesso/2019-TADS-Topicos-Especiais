@@ -18,6 +18,11 @@ from django.views.generic.list import ListView
 # Importa o Mixin para obrigar login
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+# Biblioteca para controlar o acesso por grupo de usuário
+from braces.views import GroupRequiredMixin
+
+# Método que busca um objeto. Se não existir, da um erro 404
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -60,7 +65,9 @@ class CurriculoView(TemplateView):
 
 ##################### INSERIR ######################
 
-class EstadoCreate(LoginRequiredMixin, CreateView):
+class EstadoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    # Define o grupo de usuário que pode acessar esta view
+    group_required = u"Administrador"
     # Define qual o modelo pra essa classe vai criar o form
     model = Estado
     # Qual o html que será utilizado?
@@ -84,7 +91,8 @@ class EstadoCreate(LoginRequiredMixin, CreateView):
         return context
 
 
-class CidadeCreate(LoginRequiredMixin, CreateView):
+class CidadeCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = Cidade
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-cidades")
@@ -99,7 +107,8 @@ class CidadeCreate(LoginRequiredMixin, CreateView):
         return context
 
 
-class TipoCreate(LoginRequiredMixin, CreateView):
+class TipoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = Tipo
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-tipos")
@@ -114,7 +123,8 @@ class TipoCreate(LoginRequiredMixin, CreateView):
         return context
 
 
-class RacaCreate(LoginRequiredMixin, CreateView):
+class RacaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = Raca
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-racas")
@@ -136,6 +146,15 @@ class AnimalCreate(LoginRequiredMixin, CreateView):
     fields = ['tipo', 'raca', 'descricao',
               'nome', 'idade', 'foto', 'cidade', 'telefone']
 
+    def form_valid(self, form):
+
+        # Define o usuário como usuário logado
+        form.instance.usuario = self.request.user
+        
+        url = super().form_valid(form)
+
+        return url
+
     # Método utilizado para enviar dados ao template
     def get_context_data(self, *args, **kwargs):
         context = super(AnimalCreate, self).get_context_data(*args, **kwargs)
@@ -147,7 +166,8 @@ class AnimalCreate(LoginRequiredMixin, CreateView):
 ##################### EDITAR ######################
 
 
-class EstadoUpdate(LoginRequiredMixin, UpdateView):
+class EstadoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     # Define qual o modelo pra essa classe vai criar o form
     model = Estado
     # Qual o html que será utilizado?
@@ -171,7 +191,8 @@ class EstadoUpdate(LoginRequiredMixin, UpdateView):
         return context
 
 
-class CidadeUpdate(LoginRequiredMixin, UpdateView):
+class CidadeUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = Cidade
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-cidades")
@@ -186,7 +207,8 @@ class CidadeUpdate(LoginRequiredMixin, UpdateView):
         return context
 
 
-class TipoUpdate(LoginRequiredMixin, UpdateView):
+class TipoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = Tipo
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-tipos")
@@ -201,7 +223,8 @@ class TipoUpdate(LoginRequiredMixin, UpdateView):
         return context
 
 
-class RacaUpdate(LoginRequiredMixin, UpdateView):
+class RacaUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = Raca
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-racas")
@@ -223,6 +246,13 @@ class AnimalUpdate(LoginRequiredMixin, UpdateView):
     fields = ['tipo', 'raca', 'descricao',
               'nome', 'idade', 'foto', 'cidade', 'telefone']
 
+    # Altera a query para buscar o objeto do usuário logado
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(
+            Animal, pk=self.kwargs['pk'], usuario=self.request.user)
+        return self.object
+
+
     # Método utilizado para enviar dados ao template
     def get_context_data(self, *args, **kwargs):
         context = super(AnimalUpdate, self).get_context_data(*args, **kwargs)
@@ -234,7 +264,8 @@ class AnimalUpdate(LoginRequiredMixin, UpdateView):
 ##################### Excluir ######################
 
 
-class EstadoDelete(LoginRequiredMixin, DeleteView):
+class EstadoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     # Define qual o modelo pra essa classe vai criar o form
     model = Estado
     # Qual o html que será utilizado?
@@ -255,7 +286,8 @@ class EstadoDelete(LoginRequiredMixin, DeleteView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class CidadeDelete(LoginRequiredMixin, DeleteView):
+class CidadeDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = Cidade
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-cidades")
@@ -267,7 +299,8 @@ class CidadeDelete(LoginRequiredMixin, DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class TipoDelete(LoginRequiredMixin, DeleteView):
+class TipoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = Tipo
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-tipos")
@@ -279,7 +312,8 @@ class TipoDelete(LoginRequiredMixin, DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class RacaDelete(LoginRequiredMixin, DeleteView):
+class RacaDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = Raca
     template_name = "adocao/formulario.html"
     success_url = reverse_lazy("listar-racas")
@@ -308,24 +342,34 @@ class AnimalDelete(LoginRequiredMixin, DeleteView):
 # Vai gerar uma tela com uma lista de estados
 
 
-class EstadoList(LoginRequiredMixin, ListView):
+class EstadoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     # Inform qual o modelo
     model = Estado
     # E o template
     template_name = "adocao/listas/list_estado.html"
 
-class CidadeList(LoginRequiredMixin, ListView):
+class CidadeList(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = Cidade
     template_name = "adocao/listas/list_cidade.html"
 
-class TipoList(LoginRequiredMixin, ListView):
+class TipoList(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = Tipo
     template_name = "adocao/listas/list_tipo.html"
 
-class RacaList(LoginRequiredMixin, ListView):
+class RacaList(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = Raca
     template_name = "adocao/listas/list_raca.html"
 
 class AnimalList(LoginRequiredMixin, ListView):
     model = Animal
     template_name = "adocao/listas/list_animal.html"
+
+    # Altera a query padrão para buscar somente dados do usuário logado
+    def get_queryset(self):
+        # O object_list é o nome padrão para armazenar uma lista de objetos de um ListView
+        self.object_list = Animal.objects.filter(usuario=self.request.user)
+        return self.object_list 
