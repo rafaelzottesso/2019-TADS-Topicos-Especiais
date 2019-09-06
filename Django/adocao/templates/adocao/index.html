@@ -40,19 +40,19 @@
 
         <div class="animais">
 
-{% for animal in ultimos_animais %}
+          {% for animal in ultimos_animais %}
 
-<div class="float-left m-2 p-3 animais-list">
-  <img width="150" height="150" src="{{animal.foto}}" alt="">
-  <div class="animal-desc">
-    {{animal.tipo.descricao}}
-  </div>
-  <span>{{animal.raca.descricao}}</span>
-</div>
+          <div class="float-left m-2 p-3 animais-list">
+            <img width="150" height="150" src="{{animal.foto}}" alt="">
+            <div class="animal-desc">
+              {{animal.tipo.descricao}}
+            </div>
+            <span>{{animal.raca.descricao}}</span>
+          </div>
 
-{% empty %}
-<span>Nenhum animal cadastrado.</span>
-{% endfor %}
+          {% empty %}
+          <span>Nenhum animal cadastrado.</span>
+          {% endfor %}
 
           <div class="clear"></div>
 
