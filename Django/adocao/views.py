@@ -40,7 +40,8 @@ class PaginaInicialView(TemplateView):
         # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
         context = super(PaginaInicialView, self).get_context_data(*args, **kwargs)
 
-        context['ultimos_animais'] = "Aqui vai a lista de animais"
+        # Listar somente os últimos 10 registros
+        context['ultimos_animais'] = Animal.objects.all().reverse()[:10]
 
         return context
 
