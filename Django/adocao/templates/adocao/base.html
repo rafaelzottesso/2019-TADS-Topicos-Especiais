@@ -58,11 +58,14 @@
               Cadastros
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% if request.user.groups.all.0.name == "Administrador" %}
+              <!-- Mostra este menu só para o grupo Administrador -->
               <a class="dropdown-item" href="{% url 'cadastrar-estado' %}">Estado</a>
               <a class="dropdown-item" href="{% url 'cadastrar-cidade' %}">Cidade</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'cadastrar-tipo' %}">Tipo</a>
               <a class="dropdown-item" href="{% url 'cadastrar-raca' %}">Raça</a>
+              {% endif %}
               <a class="dropdown-item" href="{% url 'cadastrar-animal' %}">Animal</a>
             </div>
           </li>
@@ -73,11 +76,14 @@
               Consulta
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% if request.user.groups.all.0.name == "Administrador" %}
+              <!-- Mostra este menu só para o grupo Administrador -->
               <a class="dropdown-item" href="{% url 'listar-estados' %}">Estado</a>
               <a class="dropdown-item" href="{% url 'listar-cidades' %}">Cidade</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'listar-tipos' %}">Tipo</a>
               <a class="dropdown-item" href="{% url 'listar-racas' %}">Raça</a>
+              {% endif %}
               <a class="dropdown-item" href="{% url 'listar-animais' %}">Animal</a>
             </div>
           </li>
