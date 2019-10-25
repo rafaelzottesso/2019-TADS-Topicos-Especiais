@@ -1,9 +1,13 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
+# Importa a view criada para cadastro de usuário
+from .views import UsuarioCreate
 
 urlpatterns = [
     # Aqui vão suas urls
+    path('registrar/', UsuarioCreate.as_view(), name="user-create"),
+
     path('login/', auth_views.LoginView.as_view(
         template_name='usuarios/login.html',
         extra_context={
