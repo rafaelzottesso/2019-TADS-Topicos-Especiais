@@ -20,14 +20,14 @@ from django.shortcuts import get_object_or_404
 class UsuarioCreate(CreateView):
     form_class = UserCreationForm
     template_name = "adocao/formulario.html"
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy("login")
 
     # Método utilizado para enviar dados ao template
     def get_context_data(self, *args, **kwargs):
         context = super(UsuarioCreate, self).get_context_data(*args, **kwargs)
         context['titulo'] = "Cadastro de novos Usuários"
         context['botao'] = "Cadastrar"
-        context['classeBotao'] = "btn-primary"
+        context['classeBotao'] = "btn-success"
         return context
 
     # Iremos adicionar um grupo ao usuário cadastrado
@@ -36,8 +36,9 @@ class UsuarioCreate(CreateView):
         # Busca o grupo pelo nome "Usuario"
         # Primeiro faz a busca e depois chama o form valid para inserir o usuário normalmente
         grupo = get_object_or_404(Group, name="Usuário")
-        
+    
         # Executa o form_valid padrão... ele vai fazer todas as validações normais
+        # Cria o objeto 
         url = super().form_valid(form)
 
         # Se o grupo existir
