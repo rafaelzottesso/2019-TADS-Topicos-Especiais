@@ -393,12 +393,27 @@ class AnimalDetalhes(DetailView):
     # Qual o template para essa tela
     template_name = "adocao/detalhe/animal.html"
 
+    
+    # Está comentado porque neste caso não faz sentido... #
+    # Pegar somente se o animal for do usuário cadastrado
+    '''
+    def get_object(self, queryset=None):
+        # Busca somente o Animal com a pk da URL que pertence ao usuário
+        # Se o usuário tentar alguma pk diferente, vai dar página 404
+        self.object = get_object_or_404(Animal, pk=self.kwargs['pk'], usuario=self.request.user,)
+        # Retorna o objeto que será enviado ao template
+        return self.object
+    '''
+
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
         # Colocar mais coisas no context
         # Por exemplo: fazer um filtro em outra classe que utiliza o ID (pk)
-        # do objeto que está sendo exibido (pk está na URL)
-        # context['itens'] = ItensVenda.objects.filter(venda=self.kwargs['pk'])
+        # do objeto que está sendo exibido, podemos fazer um filtro com ele...
+        # context['itens'] = ItensVenda.objects.filter(venda=self.object)
+
+        # self.object retorna o objeto da classe definida aqui no model = xxxx
+        # self.kwargs['pk'] retorna a pk que está lá na URL
 
         return context
