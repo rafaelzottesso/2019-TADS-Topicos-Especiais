@@ -12,6 +12,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Importa o TemplateView para criação de páginas simples
 from django.views.generic import TemplateView
 
+# Importa o DetailView para ver detalhes de objetos
+from django.views.generic.detail import DetailView
+
 # Importa ListView para gerar as telas com tabelas
 from django.views.generic.list import ListView
 
@@ -38,7 +41,7 @@ class PaginaInicialView(TemplateView):
     # Método utilizado para enviar dados ao template
     def get_context_data(self, *args, **kwargs):
         # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
-        context = super(PaginaInicialView, self).get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
 
         # Listar somente os últimos 10 registros
         context['ultimos_animais'] = Animal.objects.all().reverse()[:10]
@@ -380,3 +383,22 @@ class AnimalList(LoginRequiredMixin, ListView):
         # O object_list é o nome padrão para armazenar uma lista de objetos de um ListView
         self.object_list = Animal.objects.filter(usuario=self.request.user)
         return self.object_list 
+
+
+##################### Detalhar ######################
+
+class AnimalDetalhes(DetailView):
+    # Define a classe do objeto a ser detalhado
+    model = Animal
+    # Qual o template para essa tela
+    template_name = "adocao/detalhe/animal.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        # Colocar mais coisas no context
+        # Por exemplo: fazer um filtro em outra classe que utiliza o ID (pk)
+        # do objeto que está sendo exibido (pk está na URL)
+        # context['itens'] = ItensVenda.objects.filter(venda=self.kwargs['pk'])
+
+        return context

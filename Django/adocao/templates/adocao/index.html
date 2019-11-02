@@ -42,12 +42,18 @@
 
           {% for animal in ultimos_animais %}
 
-          <div class="float-left m-2 p-3 animais-list">
+          <div class="float-left m-2 p-3 animais-list text-center">
             <img width="150" height="150" src="{{animal.foto}}" alt="">
-            <div class="animal-desc">
+            <h5 class="animal-desc my-1 mb-0">
               {{animal.tipo.descricao}}
-            </div>
-            <span>{{animal.raca.descricao}}</span>
+            </h5>
+            <span>Raça: {{animal.raca.descricao}}</span>
+            <br>
+            <a href="{% url 'detalhar-animal' animal.pk %}"
+              class="btn btn-sm btn-info w-100 mt-2">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              Ver
+            </a>
           </div>
 
           {% empty %}

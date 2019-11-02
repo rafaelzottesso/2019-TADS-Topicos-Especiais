@@ -9,3 +9,7 @@
 .animais-list:hover{
     box-shadow: 0px 0px 7px #AAAAAA;
 }
+
+.detalhes-animais{
+    font-size: 130%;
+}

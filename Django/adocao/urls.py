@@ -40,5 +40,6 @@ urlpatterns = [
     path('editar/animal/<int:pk>/', AnimalUpdate.as_view(), name="editar-animal"),
     path('excluir/animal/<int:pk>/', AnimalDelete.as_view(), name="excluir-animal"),
     path('listar/animal/', AnimalList.as_view(), name="listar-animais"),
+    path('ver/animal/<int:pk>/', AnimalDetalhes.as_view(), name="detalhar-animal"),
 
 ]
